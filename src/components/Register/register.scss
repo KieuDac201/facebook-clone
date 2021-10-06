@@ -1,0 +1,79 @@
+@import "../../styles/base";
+
+.register {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: show 0.5s ease;
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  &__form {
+    background-color: $white-color;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+
+    &-top {
+      padding: 15px;
+      border-bottom: 1px solid $border-color;
+
+      h3 {
+        font-size: 32px;
+      }
+    }
+
+    &-main {
+      padding: 15px;
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &-group {
+      display: flex;
+      gap: 12px;
+
+      input {
+        width: 100%;
+        padding: 12px 15px;
+        outline: none;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        background-color: $bg-color;
+        font-size: 15px;
+      }
+    }
+
+    &-btn {
+      padding: 8px 35px;
+      display: inline;
+      background-color: $green-color;
+      font-size: 18px;
+      font-weight: $text-bold;
+      border: none;
+    }
+
+    &-btnClose {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 18px;
+      padding: 3px;
+      cursor: pointer;
+    }
+  }
+}

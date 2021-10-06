@@ -34,8 +34,16 @@ a {
 
 p {
   color: $text-color;
+  font-size: 15px;
 }
 
 button {
   cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+
+  &:hover {
+    filter: brightness(0.95);
+    transition: 0.2s ease;
+  }
 }

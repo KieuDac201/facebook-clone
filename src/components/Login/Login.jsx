@@ -1,10 +1,16 @@
 import React from 'react'
 import './login.scss'
 
-const Login = () => {
+const Login = ({ setShowRegisterForm }) => {
+
+  const showRegisterForm = () => {
+    setShowRegisterForm(true)
+  }
+
+
   return (
     <div className="login">
-      <div className="login__form">
+      <div className="login__form" >
         <input type="text" className="login__input" placeholder="Email hoặc số điện thoại" />
         <input type="password" className="login__input" placeholder="Mật khẩu" />
         <div className="login__btn">
@@ -14,7 +20,7 @@ const Login = () => {
           <div className="login__btn-forgotPass">
             Quên mật khẩu?
           </div>
-          <button className="login__btn-createAcc">
+          <button className="login__btn-createAcc" onClick={showRegisterForm}>
             Tạo tài khoản mới
           </button>
         </div>
