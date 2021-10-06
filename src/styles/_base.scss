@@ -4,7 +4,8 @@ $font: "Roboto", sans-serif;
 
 $primary-color: rgb(24, 119, 242);
 $bg-color: #f0f2f5;
-$white-color: #ffffff;
+$white-color: #fff;
+$green-color: #42b72a;
 
 $text-color: rgb(101, 103, 107);
 $text-bold-color: rgb(5, 5, 5);
@@ -13,3 +14,11 @@ $text-light: 300;
 $text-regular: 400;
 $text-medium: 500;
 $text-bold: 700;
+
+$border-color: #dddfe2;
+
+@mixin media($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}

@@ -1,0 +1,48 @@
+@import "../../styles/base";
+
+.auth {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $bg-color;
+
+  &__container {
+    padding: 0 35px;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-gap: 30px;
+
+    @include media(992px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 160px;
+
+    &-logo {
+      max-width: 300px;
+    }
+
+    &-subtitle {
+      padding-left: 30px;
+      font-size: 28px;
+      font-weight: $text-regular;
+    }
+
+    @include media(992px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0;
+      &-subtitle {
+        font-size: 24px;
+        padding-left: 0;
+      }
+    }
+  }
+}

@@ -11,6 +11,7 @@
 html {
   font-family: $font;
 }
+
 h1,
 h2,
 h3,
@@ -19,4 +20,22 @@ h5,
 h6 {
   color: $text-bold-color;
   font-weight: $text-medium;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+}
+
+a {
+  color: $text-bold-color;
+  text-decoration: none;
+}
+
+p {
+  color: $text-color;
+}
+
+button {
+  cursor: pointer;
 }
