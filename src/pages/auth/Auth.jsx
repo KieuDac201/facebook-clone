@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Login from '../../components/Login/Login'
 import "./auth.scss";
 import logo from '../../assets/images/logo.svg'
+import Register from "../../components/Register/Register";
 
 const Auth = () => {
+  const [showRegisterForm, setShowRegisterForm] = useState(false)
+
   return <div className="auth">
     <div className="auth__container">
       <div className="auth__heading">
@@ -17,7 +20,8 @@ const Auth = () => {
       </div>
 
       <div className="auth__form">
-        <Login />
+        <Login setShowRegisterForm={setShowRegisterForm} />
+        {showRegisterForm && <Register setShowRegisterForm={setShowRegisterForm} />}
       </div>
     </div>
   </div>;

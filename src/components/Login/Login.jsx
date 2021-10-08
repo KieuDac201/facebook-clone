@@ -1,30 +1,81 @@
-import React from 'react'
-import './login.scss'
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { signIn } from '../../firebase/config';
+import "./login.scss";
+import { schema } from "./yupSchema";
 
-const Login = () => {
+const Login = ({ setShowRegisterForm }) => {
+  const [validInput, setValidInput] = useState(true)
+  const {
+    register,
+    reset,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async ({ email, password }) => {
+    const user = await signIn(email, password)
+    if (user.code === 'auth/user-not-found') {
+      setValidInput(false)
+    } else {
+      setValidInput(true)
+      reset()
+    }
+  };
+
+  const showRegisterForm = () => {
+    setShowRegisterForm(true);
+  };
+
   return (
     <div className="login">
-      <div className="login__form">
-        <input type="text" className="login__input" placeholder="Email hoặc số điện thoại" />
-        <input type="password" className="login__input" placeholder="Mật khẩu" />
+      <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          {...register("email", {
+            onChange: () => setValidInput(true),
+          })}
+          className={
+            errors.email ? "login__input login__input--error" : "login__input"
+          }
+          placeholder="Email"
+        />
+        <p className="login__form-errorText">{errors.email?.message}</p>
+        <input
+          type="password"
+          {...register("password", {
+            onChange: () => setValidInput(true),
+          })}
+          className={
+            errors.password ? "login__input login__input--error" : "login__input"
+          }
+          placeholder="Mật khẩu"
+        />
+        <p className="login__form-errorText">{errors.password?.message}</p>
+        <p className="login__form-errorText">{!validInput && 'email hoặc mật khẩu không đúng!'}</p>
         <div className="login__btn">
-          <button className="login__btn-submit">
+          <button type="submit" className="login__btn-submit">
             Đăng nhập
           </button>
-          <div className="login__btn-forgotPass">
-            Quên mật khẩu?
-          </div>
-          <button className="login__btn-createAcc">
+          <div className="login__btn-forgotPass">Quên mật khẩu?</div>
+          <button
+            className="login__btn-createAcc"
+            onClick={showRegisterForm}
+            type="button"
+          >
             Tạo tài khoản mới
           </button>
         </div>
-      </div>
+      </form>
       <div className="login__text">
-        <strong>Tạo Trang</strong> dành cho người nổi tiếng, nhãn hiệu hoặc doanh nghiệp.
-
+        <strong>Tạo Trang</strong> dành cho người nổi tiếng, nhãn hiệu hoặc
+        doanh nghiệp.
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
