@@ -6,7 +6,7 @@ import logo from '../../assets/images/logo.svg'
 import Register from "../../components/Register/Register";
 
 const Auth = () => {
-  const [showRegisterForm, setShowRegisterForm] = useState(true)
+  const [showRegisterForm, setShowRegisterForm] = useState(false)
 
   return <div className="auth">
     <div className="auth__container">

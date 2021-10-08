@@ -6,6 +6,7 @@ $primary-color: rgb(24, 119, 242);
 $bg-color: #f0f2f5;
 $white-color: #fff;
 $green-color: #42b72a;
+$red-color: #f02849;
 
 $text-color: rgb(101, 103, 107);
 $text-bold-color: rgb(5, 5, 5);
@@ -20,5 +21,25 @@ $border-color: #dddfe2;
 @mixin media($width) {
   @media (max-width: $width) {
     @content;
+  }
+}
+
+@mixin flex($direction, $align, $justify: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin fadeIn() {
+  animation: show 0.4s ease;
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
