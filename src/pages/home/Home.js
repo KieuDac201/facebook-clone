@@ -1,17 +1,25 @@
 import React from "react";
 import { useContext } from "react";
+
+import SideBarLeft from "../../components/SideBarLeft/SideBarLeft";
+import SideBarRight from "../../components/SideBarRight/SideBarRight";
+import NewsFeed from "../../components/NewsFeed/NewsFeed";
+import NavBar from "../../components/NavBar/NavBar";
 import { UserContext } from "../../context/userProvider";
-import { logOut } from "../../firebase/config";
 
 import "./home.scss";
 
 const Home = () => {
   const { userInfo } = useContext(UserContext);
-  console.log(userInfo);
   return (
     <>
-      <h1>Home</h1>
-      <button onClick={logOut}>sign out</button>
+      <NavBar />
+      <div className="home">
+        <SideBarLeft />
+        <NewsFeed />
+        <SideBarRight />
+      </div>
+      {/* <button onClick={logOut}>sign out</button> */}
     </>
   );
 };

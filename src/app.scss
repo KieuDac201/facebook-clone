@@ -41,9 +41,44 @@ button {
   cursor: pointer;
   border-radius: 5px;
   color: #fff;
+  border: none;
+  outline: none;
 
   &:hover {
     filter: brightness(0.95);
     transition: 0.2s ease;
+  }
+}
+body {
+  background: $bg-color;
+}
+
+.sideBar__content {
+  position: fixed;
+  top: 56px;
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
+  padding-top: 20px;
+  max-width: 300px;
+  width: 100%;
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    visibility: hidden;
+    border-radius: 10px;
+    background-color: rgb(206, 208, 212);
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
   }
 }

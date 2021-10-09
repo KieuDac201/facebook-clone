@@ -1,15 +1,23 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { GrClose } from "react-icons/gr";
 import ReactTooltip from "react-tooltip";
+import ClipLoader from "react-spinners/ClipLoader";
+
+import { UserContext } from "../../context/userProvider";
 import { signUp, updateUserProfile } from "../../firebase/config";
 import "./register.scss";
 import { schema } from "./yupSchema";
 
 
+
+
+
 const Register = ({ setShowRegisterForm }) => {
   const [emailAlreadyError, setEmailAlreadyError] = useState(false);
+  const { userInfo, setUserInfo } = useContext(UserContext)
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -21,17 +29,21 @@ const Register = ({ setShowRegisterForm }) => {
   });
 
   const onSubmit = async ({ email, password, firstName, lastName }) => {
+    setLoading(true)
     const res = await signUp(email, password);
     if (res.code === "auth/email-already-in-use") {
       setEmailAlreadyError(true);
 
     } else {
+
       const fullName = firstName.trim() + ' ' + lastName.trim()
       updateUserProfile(fullName)
+      setUserInfo({ ...userInfo, displayName: fullName, photoURL: "https://sothis.es/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" })
       setEmailAlreadyError(false);
       reset();
       hideForm();
     }
+    setLoading(false)
   };
 
   const hideForm = () => {
@@ -102,7 +114,9 @@ const Register = ({ setShowRegisterForm }) => {
             />
           </div>
           <button className="register__form-btn" type="submit">
-            Đăng ký
+
+            {loading ? <ClipLoader color="#ffffff" loading={loading} size={30} /> : ' Đăng ký'}
+
           </button>
           <ReactTooltip type="error" place="top" effect="float" />
         </form>

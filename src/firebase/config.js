@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { useContext } from "react";
 import { showToast } from "../utils/ultis";
 
 const firebaseConfig = {
@@ -44,6 +45,7 @@ export const signIn = async (email, password) => {
     showToast("default", "👏🏻 Đăng ký thành công");
     return userCredential.user;
   } catch (error) {
+    console.log(error.code);
     return error;
   }
 };

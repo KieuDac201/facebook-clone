@@ -1,0 +1,17 @@
+.sideBarRight {
+  display: flex;
+  justify-content: flex-end;
+  .sideBar {
+    &__content {
+    }
+
+    &__list {
+      &-title {
+        margin-top: 18px;
+        padding-top: 14px;
+        padding-bottom: 12px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
