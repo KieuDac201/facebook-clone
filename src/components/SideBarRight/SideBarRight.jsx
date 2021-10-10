@@ -16,7 +16,7 @@ const SideBarRight = () => {
           <div className="sideBar__list-title">Người liên hệ</div>
           {
             dataFriend.map(({ imageUrl, title }) => (
-              <SideBarItem imageUrl={imageUrl} title={title} radius={999} key={uuidv4()} />
+              <SideBarItem imageUrl={imageUrl} title={title} radius={999} key={uuidv4()} online />
             ))
           }
         </div>
