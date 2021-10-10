@@ -1,0 +1,147 @@
+@import "../../styles/base";
+
+.navbar {
+  @include flex(row, center, space-between);
+  height: 56px;
+  padding: 0 20px;
+  background: $white-color;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left {
+    gap: 10px;
+
+    &-logo {
+      width: 40px;
+    }
+
+    &-search {
+      width: 240px;
+      height: 40px;
+      border-radius: 999px;
+      background-color: $bg-color;
+      position: relative;
+      display: flex;
+      padding: 0 12px;
+      align-items: center;
+
+      svg {
+        font-size: 22px;
+      }
+
+      input {
+        width: 100%;
+        height: 40px;
+        background: transparent;
+        border: none;
+        padding-left: 10px;
+        outline: none;
+
+        &::placeholder {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  &__center {
+    gap: 6px;
+
+    &-item {
+      width: 111px;
+      height: 48px;
+      font-size: 28px;
+      border-radius: 10px;
+      position: relative;
+      transition: 0.2s ease;
+      cursor: pointer;
+      @include flex(row, center, center);
+
+      &:last-child {
+        font-size: 23px;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: $primary-color;
+        opacity: 0;
+      }
+
+      &:hover {
+        background: $bg-color;
+        transition: 0.2 ease;
+      }
+
+      &.active {
+        svg {
+          fill: $primary-color;
+        }
+
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__right {
+    gap: 6px;
+
+    &-user {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 20px;
+      border-radius: 15px;
+      padding: 5px 10px;
+
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+
+      &:hover {
+        transition: 0.2s ease;
+        cursor: pointer;
+        background-color: $bg-color;
+      }
+    }
+
+    &-item {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background: rgb(228, 230, 235);
+      @include flex(row, center, center);
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &:hover {
+        filter: brightness(0.95);
+      }
+
+      svg {
+        fill: $text-bold-color;
+      }
+
+      &:last-child {
+        font-size: 28px;
+      }
+    }
+  }
+}

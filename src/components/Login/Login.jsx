@@ -1,12 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import ClipLoader from "react-spinners/ClipLoader";
+
 import { signIn } from '../../firebase/config';
 import "./login.scss";
 import { schema } from "./yupSchema";
 
 const Login = ({ setShowRegisterForm }) => {
   const [validInput, setValidInput] = useState(true)
+  const [loading, setLoading] = useState(false)
   const {
     register,
     reset,
@@ -17,13 +20,16 @@ const Login = ({ setShowRegisterForm }) => {
   });
 
   const onSubmit = async ({ email, password }) => {
+    setLoading(true)
     const user = await signIn(email, password)
-    if (user.code === 'auth/user-not-found') {
+    if (user.code === 'auth/user-not-found' || user.code === 'auth/wrong-password') {
       setValidInput(false)
     } else {
+
       setValidInput(true)
       reset()
     }
+    setLoading(false)
   };
 
   const showRegisterForm = () => {
@@ -58,7 +64,7 @@ const Login = ({ setShowRegisterForm }) => {
         <p className="login__form-errorText">{!validInput && 'email hoặc mật khẩu không đúng!'}</p>
         <div className="login__btn">
           <button type="submit" className="login__btn-submit">
-            Đăng nhập
+            {loading ? <ClipLoader color="#ffffff" loading={loading} size={30} /> : 'Đăng nhập'}
           </button>
           <div className="login__btn-forgotPass">Quên mật khẩu?</div>
           <button

@@ -19,9 +19,13 @@ const UserProvider = ({ children }) => {
           photoURL,
           uid,
         });
-        history.push("/");
+        setTimeout(() => {
+          history.push("/");
+        }, 100);
       } else {
-        history.push("/auth");
+        setTimeout(() => {
+          history.push("/auth");
+        }, 100);
       }
     });
   }, [history]);
